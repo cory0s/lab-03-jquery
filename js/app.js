@@ -21,11 +21,12 @@ Creature.prototype.render = function() {
   creatureClone.find('h2').text(this.name);
   creatureClone.find('img').attr('src', this.image_url);
   creatureClone.find('p').text(this.description);
+  creatureClone.removeClass('clone');
+  creatureClone.attr('class', this.name);
 
 }
 
 Creature.readJson = () => {
-  console.log('ran readJson');
   $.get('../data/page-1.json', 'json')
     .then(data => {
       data.forEach(obj => {
