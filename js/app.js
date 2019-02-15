@@ -1,16 +1,18 @@
 'use strict';
 
+Creature.allCreatures = [];
+const keywords = [];
+
 function Creature(creature){
   this.name = creature.title;
   this.image_url = creature.image_url;
   this.description = creature.description;
   this.keyword = creature.keyword;
   this.horns = creature.horns;
+  if (!keywords.includes(this.keyword)){
+    keywords.push(this.keyword);
+  }
 }
-
-Creature.allCreatures = [];
-const keywords = [];
-console.log('typeof keywords', typeof keywords);
 
 Creature.prototype.render = function() {
   $('main').append('<div class="clone"></div>');
@@ -25,22 +27,7 @@ Creature.prototype.render = function() {
   creatureClone.find('p').text(this.description);
   creatureClone.removeClass('clone');
   creatureClone.attr('class', this.name);
-
-  if (keywords.includes(this.keyword) === false){
-    keywords.push(this.keyword);
-  }
 }
-
-
-function populateSelectOptions() {
-  console.log(typeof keywords);
-  console.log(keywords);
-  console.log(keywords.length);
-  for (let i=0; i<keywords.length; i++){
-    $('select').append(`<option>${keywords[i]}</option>`);
-  }
-}
-
 
 Creature.readJson = () => {
   $.get('../data/page-1.json', 'json')
@@ -53,9 +40,12 @@ Creature.readJson = () => {
 }
 
 Creature.loadCreatures = () => {
+  //console.log(keywords);
   Creature.allCreatures.forEach(creature => creature.render())
+
+  for (let i=0; i<keywords.length; i++){
+    $('select').append(`<option>${keywords[i]}</option>`);
+  }
 }
 
 $(() => Creature.readJson());
-populateSelectOptions();
-
