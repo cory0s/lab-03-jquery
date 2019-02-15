@@ -19,6 +19,18 @@ Number and name of feature: Filter images
 Estimate of time needed to complete: 2hrs
 
 Start time: 11:00am
+Finish time: 6:30pm
+Actual time needed to complete: 4 hours
+
+Driver: Jon
+Navigator: Cory
+
+Feature 3:
+
+Number and name of feature: Pagination
+Estimate of time needed to complete: 2hrs
+
+Start time: 11:00am
 Finish time: 
 Actual time needed to complete: 
 
