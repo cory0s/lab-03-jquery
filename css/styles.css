@@ -53,3 +53,8 @@ footer{
     padding-top: 25px;
     margin-bottom: 0px;
 }
+
+button {
+    display: block;
+    margin: 10px;
+}

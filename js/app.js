@@ -1,7 +1,8 @@
 'use strict';
 
 Creature.allCreatures = [];
-const keywords = [];
+let keywords = [];
+let jsonPage = '../data/page-1.json'
 
 function Creature(creature){
   this.name = creature.title;
@@ -30,7 +31,9 @@ Creature.prototype.render = function() {
 }
 
 Creature.readJson = () => {
-  $.get('../data/page-1.json', 'json')
+  keywords = [];
+  Creature.allCreatures = [];
+  $.get(jsonPage, 'json')
     .then(data => {
       data.forEach(obj => {
         Creature.allCreatures.push(new Creature(obj));
@@ -40,9 +43,7 @@ Creature.readJson = () => {
 }
 
 Creature.loadCreatures = () => {
-  //console.log(keywords);
   Creature.allCreatures.forEach(creature => creature.render())
-
   for (let i=0; i<keywords.length; i++){
     $('select').append(`<option>${keywords[i]}</option>`);
   }
@@ -55,5 +56,18 @@ $('select').on('change', function(){
   console.log($selection);
   $('div').hide()
   $(`div[class="${$selection}"]`).show()
+})
+
+$('button').on('click', function(){
+  $('div').remove();
+  $('option').remove();
+  if (jsonPage === '../data/page-1.json'){
+    jsonPage = '../data/page-2.json'
+    console.log(jsonPage);
+  } else {
+    jsonPage = '../data/page-1.json';
+    console.log('clicked', jsonPage);
+  }
+  $(() => Creature.readJson());
 })
 
