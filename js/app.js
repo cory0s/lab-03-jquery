@@ -26,7 +26,7 @@ Creature.prototype.render = function() {
   creatureClone.find('img').attr('src', this.image_url);
   creatureClone.find('p').text(this.description);
   creatureClone.removeClass('clone');
-  creatureClone.attr('class', this.name);
+  creatureClone.attr('class', this.keyword);
 }
 
 Creature.readJson = () => {
@@ -49,3 +49,11 @@ Creature.loadCreatures = () => {
 }
 
 $(() => Creature.readJson());
+
+$('select').on('change', function(){
+  let $selection = $(this).val();
+  console.log($selection);
+  $('div').hide()
+  $(`div[class="${$selection}"]`).show()
+})
+
