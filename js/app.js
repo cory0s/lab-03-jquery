@@ -3,6 +3,9 @@
 Creature.allCreatures = [];
 let keywords = [];
 let jsonPage = '../data/page-1.json'
+let source = document.getElementById('photo-template').innerHTML;
+let template = Handlebars.compile(source);
+
 
 function Creature(creature){
   this.name = creature.title;
@@ -16,18 +19,21 @@ function Creature(creature){
 }
 
 Creature.prototype.render = function() {
-  $('main').append('<div class="clone"></div>');
+  let context = {title: this.name, img_url: this.image_url, description: this.description, keyword: this.keyword};
+  let html = template(context);
+  $('main').append(html);
 
-  let creatureClone = $('div[class="clone"]');
-  let creatureHtml = $('#photo-template').html();
+  // $('main').append('<div class="clone"></div>');
+  // let creatureClone = $('div[class="clone"]');
+  // let creatureHtml = $('#photo-template').html();
 
-  creatureClone.html(creatureHtml);
+  // creatureClone.html(creatureHtml);
 
-  creatureClone.find('h2').text(this.name);
-  creatureClone.find('img').attr('src', this.image_url);
-  creatureClone.find('p').text(this.description);
-  creatureClone.removeClass('clone');
-  creatureClone.attr('class', this.keyword);
+  // creatureClone.find('h2').text(this.name);
+  // creatureClone.find('img').attr('src', this.image_url);
+  // creatureClone.find('p').text(this.description);
+  // creatureClone.removeClass('clone');
+  // creatureClone.attr('class', this.keyword);
 }
 
 Creature.readJson = () => {
@@ -53,7 +59,6 @@ $(() => Creature.readJson());
 
 $('select').on('change', function(){
   let $selection = $(this).val();
-  console.log($selection);
   $('div').hide()
   $(`div[class="${$selection}"]`).show()
 })
@@ -61,12 +66,11 @@ $('select').on('change', function(){
 $('button').on('click', function(){
   $('div').remove();
   $('option').remove();
+  $('#photo-template').remove();
   if (jsonPage === '../data/page-1.json'){
     jsonPage = '../data/page-2.json'
-    console.log(jsonPage);
   } else {
     jsonPage = '../data/page-1.json';
-    console.log('clicked', jsonPage);
   }
   $(() => Creature.readJson());
 })
