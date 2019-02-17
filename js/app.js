@@ -50,6 +50,7 @@ Creature.readJson = () => {
 
 Creature.loadCreatures = () => {
   Creature.allCreatures.forEach(creature => creature.render())
+  $('select').append(`<option selected="selected" disabled="disabled">Select Creature Type</option>`)
   for (let i=0; i<keywords.length; i++){
     $('select').append(`<option>${keywords[i]}</option>`);
   }
