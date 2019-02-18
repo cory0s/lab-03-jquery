@@ -43,21 +43,26 @@ Creature.prototype.render = function() {
 Creature.readJson = () => {
   keywords = [];
   Creature.allCreatures = [];
-  $('div').remove();
-  $('option').remove();
-  $('#sort').empty();
+  // $('div').remove();
+  // $('option').remove();
+  // $('#sort').empty();
 
   $.get(jsonPage, 'json')
     .then(data => {
       data.forEach(obj => {
         Creature.allCreatures.push(new Creature(obj));
       })
+      Creature.allCreatures.sort((a,b) => a.name.localeCompare(b.name));  
     })
     .then(Creature.loadCreatures)
 }
 
 // Render creature objects to DOM
 Creature.loadCreatures = () => {
+
+  $('div').remove();
+  $('option').remove();
+  $('#sort').empty();
 
   Creature.allCreatures.forEach(creature => creature.render());
 
@@ -99,15 +104,17 @@ $('button').on('click', function(){
 $('#sort').on('change', function(){
   let $selection = $(this).val();
 
-  if($selection === 'Title'){
-    Creature.allCreatures.sort((a,b) => a.name.localeCompare(b.name));
-    console.log('Title sort', Creature.allCreatures);
-  } else {
+  if($selection === 'Horns'){
     Creature.allCreatures.sort((a,b) => a.horns - b.horns);
     console.log('Horn sort', Creature.allCreatures);
+    Creature.loadCreatures();
+  } else if ($selection === 'Title'){
+    Creature.allCreatures.sort((a,b) => a.name.localeCompare(b.name)); 
+    console.log('Title sort', Creature.allCreatures);
+    Creature.loadCreatures();
   }
-
-  $(() => Creature.readJson());
 })
 
 $(() => Creature.readJson());
+
+
