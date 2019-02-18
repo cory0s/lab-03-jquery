@@ -42,9 +42,6 @@ Creature.prototype.render = function() {
 Creature.readJson = () => {
   keywords = [];
   Creature.allCreatures = [];
-  // $('div').remove();
-  // $('option').remove();
-  // $('#sort').empty();
 
   $.get(jsonPage, 'json')
     .then(data => {
@@ -61,7 +58,6 @@ Creature.loadCreatures = () => {
 
   $('div').remove();
   $('option').remove();
-  $('#sort').empty();
 
   Creature.allCreatures.forEach(creature => creature.render());
 
