@@ -3,7 +3,6 @@
 //Global variables and arrays
 Creature.allCreatures = [];
 let keywords = [];
-let horns = [];
 let jsonPage = '../data/page-1.json'
 let source = document.getElementById('photo-template').innerHTML;
 let template = Handlebars.compile(source);
@@ -43,9 +42,6 @@ Creature.prototype.render = function() {
 Creature.readJson = () => {
   keywords = [];
   Creature.allCreatures = [];
-  // $('div').remove();
-  // $('option').remove();
-  // $('#sort').empty();
 
   $.get(jsonPage, 'json')
     .then(data => {
@@ -62,7 +58,6 @@ Creature.loadCreatures = () => {
 
   $('div').remove();
   $('option').remove();
-  $('#sort').empty();
 
   Creature.allCreatures.forEach(creature => creature.render());
 

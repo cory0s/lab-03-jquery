@@ -5,19 +5,25 @@
 body{
     background-color: #c73e1d;
     background-image: linear-gradient(315deg, #c73e1d 0%, #a23b72 37%, #2e86ab 100%);
+    min-width: 480px;
+}
+
+header{
+    display: flex;
+    flex-direction: column;
 }
 
 main{
     text-align: center;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
     min-height: 600px;
 }
 
 h1{
     text-align: center;
-    height: 100px;
+    height: 10%;
     line-height: 100px;
     font-size: 50px;
     font-family: 'Coiny', cursive;
@@ -30,14 +36,13 @@ h2{
 }
 
 select{
-    margin-left: 50%;
-    margin-top: 20px;
-    -webkit-transform: scale(2);
+    -webkit-transform: scale(1.75);
+    width: 15%;
+    margin: 10px auto 10px auto;
 }
 
 div{
-    float: left;
-    width: 250px;
+    width: 280px;
     margin: 75px;
     height: 200px;
 }
@@ -45,7 +50,7 @@ div{
 img{
     width: 200px;
     height: 200px;
-    /* margin: 10px; */
+    margin: 10px auto;
 }
 
 footer{
@@ -57,7 +62,14 @@ footer{
 }
 
 button {
-    display: block;
     margin: 10px auto 10px auto;
+    height: 50%;
+    min-width: 0.25vw;
+    border-radius: 4px;
+    font-size: 18px;
+}
 
+button:hover{
+    background-image: linear-gradient(315deg, #c73e1d 0%, #a23b72 37%, #2e86ab 100%);
+    border: 3px solid black;
 }
