@@ -31,6 +31,7 @@ h2{
 
 select{
     margin-left: 50%;
+    margin-top: 20px;
     -webkit-transform: scale(2);
 }
 
@@ -57,5 +58,6 @@ footer{
 
 button {
     display: block;
-    margin: 10px;
+    margin: 10px auto 10px auto;
+
 }
