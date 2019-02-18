@@ -3,7 +3,6 @@
 //Global variables and arrays
 Creature.allCreatures = [];
 let keywords = [];
-let horns = [];
 let jsonPage = '../data/page-1.json'
 let source = document.getElementById('photo-template').innerHTML;
 let template = Handlebars.compile(source);
